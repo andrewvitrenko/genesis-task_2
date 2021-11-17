@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Box } from '@mui/material';
-import { loadFeed } from '../../api/feed'; 
+import { getFeed } from '../../api/feed'; 
 import { Store } from '../../interfaces';
 import { Post } from '../Post';
 
@@ -10,7 +10,7 @@ export const Feed: React.FC = () => {
   const { feed } = useSelector((store: Store) => store);
 
   useEffect(() => {
-    dispatch(loadFeed());
+    dispatch(getFeed());
   }, []);
 
   return (
@@ -21,7 +21,8 @@ export const Feed: React.FC = () => {
         justifyContent: 'center',
         '& .MuiCard-root': {
           margin: '15px',
-          flexBasis: '25%'
+          flexBasis: '25%',
+          minWidth: '250px',
         }
       }}
     >

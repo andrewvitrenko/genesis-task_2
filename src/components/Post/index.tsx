@@ -10,8 +10,6 @@ import {
 import { IPost } from '../../interfaces';
 
 export const Post: React.FC<{post: IPost}> = ({ post }) => {
-  console.log(post.hashtags);
-
   return (
     <Card>
       <CardContent>
