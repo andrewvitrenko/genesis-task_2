@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { Snackbar } from '@mui/material';
 import { useSelector } from 'react-redux';
+import { Snackbar } from '@mui/material';
 import { Store } from '../../interfaces';
 
 export const Error: React.FC = () => {

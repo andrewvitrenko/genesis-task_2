@@ -45,8 +45,8 @@ const initialState: Store = {
   error: ''
 };
 
-const appReducer = createSlice({
-  name: 'appReducer',
+const rootReducer = createSlice({
+  name: 'rootReducer',
   initialState,
   reducers: {
     storeFeed(store, action: PayloadAction<IPost[]>) {
@@ -55,7 +55,7 @@ const appReducer = createSlice({
     storeUserInfo(store, action: PayloadAction<User>) {
       store.user = action.payload;
     },
-    addError(store, action: PayloadAction<string>) {
+    setError(store, action: PayloadAction<string>) {
       store.error = action.payload;
     },
     deleteError(store) {
@@ -67,5 +67,5 @@ const appReducer = createSlice({
   }
 });
 
-export const { storeFeed, storeUserInfo, addError, deleteError, storeUserFeed } = appReducer.actions;
-export default appReducer.reducer;
+export const { storeFeed, storeUserInfo, setError, deleteError, storeUserFeed } = rootReducer.actions;
+export default rootReducer.reducer;

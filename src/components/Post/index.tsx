@@ -9,7 +9,7 @@ import {
 } from '@mui/material';
 import { IPost } from '../../interfaces';
 
-export const Post: React.FC<{post: IPost}> = ({ post }) => {
+export const Post: React.FC<{ post: IPost }> = ({ post }) => {
   return (
     <Card>
       <CardContent>
