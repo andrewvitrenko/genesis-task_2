@@ -1,6 +1,6 @@
-import React, { useEffect } from 'react';
+import React, { ChangeEvent, useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Avatar, Typography, Card, CardContent, Box } from '@mui/material';
+import { Avatar, Typography, Card, CardContent, Box, Pagination, Stack } from '@mui/material';
 import { Video } from '../Video';
 import { Store } from '../../interfaces';
 import { getUserInfo, getUserFeed } from '../../api/user';
@@ -10,6 +10,12 @@ import { storeUserFeed } from '../../store/reducer';
 export const Profile: React.FC = () => {
   const dispatch = useDispatch();
   const { user, userFeed } = useSelector((store: Store) => store);
+  const [ page, setPage ] = useState<number>(1);
+  const PER_PAGE = 10;
+
+  const handlePagination = (e: ChangeEvent<unknown>, p: number) => {
+    setPage(p);
+  };
 
   useEffect(() => {
     dispatch(getUserInfo());
@@ -43,8 +49,24 @@ export const Profile: React.FC = () => {
           }
         }}
       >
-        {userFeed.map(video => <Video key={video.id} video={video} />)}
+        {userFeed.map((video, i) =>
+          i + 1 > (page - 1) * PER_PAGE &&
+          i < page * PER_PAGE &&
+          <Video key={video.id} video={video} />
+        )}
       </Box>
+      <Stack spacing={2}>
+        <Pagination
+          count={Math.ceil(userFeed.length / PER_PAGE)}
+          onChange={handlePagination}
+          page={page}
+          sx={{
+            '& .MuiPagination-ul': {
+              justifyContent: 'center'
+            }
+          }}
+        />
+      </Stack>
     </Box>
   );
 };
